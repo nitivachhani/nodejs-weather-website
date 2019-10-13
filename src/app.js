@@ -7,6 +7,8 @@ const geocode = require('./utils/geocode')
 
 // express -> function. Does not take arguments. Run function on it to configure the server
 const app = express()
+// process.env.PORT -> Only with Heroku
+const port = process.env.PORT || 3000
 
 // // Provided by wrappper function
 // console.log(__dirname)
@@ -141,6 +143,11 @@ app.get('*', (req, res)=> {
 
 // Passed once - to starting the server
 // access it: localhost:3000
-app.listen(3000, () => {
-    console.log('Server is up on port 3000')
+// Heroku sets the port and it may keep chnging
+// app.listen(3000, () => {
+//     console.log('Server is up on port 3000')
+// })
+
+app.listen(port, () => {
+    console.log('Server is up on port 3000 or process.env.PORT = ' + port)
 })
